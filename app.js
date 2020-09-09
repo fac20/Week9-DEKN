@@ -5,17 +5,21 @@ const formDiv = document.querySelector("#form")
 // Signup
 const signUp = () => {
     const userInput = h("input", { id: "email", type: "email", placeholder: "Enter email here.."});
-    const userLabel = h("label", { for: "email" }, "Email:");
+    const userLabel = h("label", { for: "email" }, "Email*");
+    const userError = h("div", { id: "emailError", class: "error"});
 
-    const passwordInput = h("input", { id: "mail", type: "password", "pattern": ".*\d.*", "minlength": "8", "aria-describedby": "pw-req passwordError", placeholder: "Enter password here.."});
-    const passwordLabel = h("label", { for: "password" }, "Password:");
-    // create password req variable 
+    const passwordInput = h("input", { id: "password", type: "password", pattern: ".*\d.*", minlength: "8", "aria-describedby": "passwordRequirements passwordError", placeholder: "Enter password here.."});
+    const passwordError = h("div", { id: "passwordError", class: "error"});
+
+    const passwordLabel = h("label", { for: "password" }, "Password*");
+    const passwordReq = h("div", { id: "passwordRequirements", class: "requirements"}, "Passwords must contain at least one number, and be at least 8 characters long." );
     
     const submitButton = h("button", {}, "Sign up");
+
     return h("form", { onsubmit: function(){
-    //get email and password from the input    
+        //get email and password from the input    
     }},
-    userLabel, userInput, passwordLabel, passwordInput, submitButton
+    userLabel, userInput, userError, passwordReq, passwordLabel, passwordInput, passwordError, submitButton
     )        
 }
   
@@ -25,16 +29,20 @@ formDiv.append(signUpForm)
 // Login
 const login = () => {
     const userInput = h("input", { id: "email", type: "email", placeholder: "Enter email here.."});
-    const userLabel = h("label", { for: "email" }, "Email:");
+    const userLabel = h("label", { for: "email" }, "Email*");
+    const userError = h("div", { id: "emailError", class: "error"});
 
-    const passwordInput = h("input", { id: "mail", type: "password", "pattern": ".*\d.*", "minlength": "8", "aria-describedby": "pw-req passwordError", placeholder: "Enter password here.."});
-    const passwordLabel = h("label", { for: "password" }, "Password:");
+    const passwordInput = h("input", { id: "password", type: "password", pattern: ".*\d.*", minlength: "8", "aria-describedby": "passwordRequirements passwordError", placeholder: "Enter password here.."});
+    const passwordError = h("div", { id: "passwordError", class: "error"});
+
+    const passwordLabel = h("label", { for: "password" }, "Password*");
+    const passwordReq = h("div", { id: "passwordRequirements", class: "requirements"}, "Passwords must contain at least one number, and be at least 8 characters long." );
 
     const submitButton = h("button", {}, "Login");
     return h("form", { onsubmit: function(){
     //get email and password from the input    
     }},
-    userLabel, userInput, passwordLabel, passwordInput, submitButton
+    userLabel, userInput, userError, passwordReq, passwordLabel, passwordInput, passwordError, submitButton
     )        
 }
   
@@ -47,12 +55,12 @@ const travelPost = () => {
     const locationLabel = h("label", { for: "location" }, "Location:");
 
     const messageInput = h("textarea", { id: "message", placeholder: "Message" });
-    const messageLabel = h("label", { for: "message" }, "Tell us about your experience ✨")
+    const messageLabel = h("label", { for: "message" }, "Tell us about your experience! ✨")
 
-    const imageInput = h("input", { id: "image", type: "text", placeholder: "Image URL here!"})
+    const imageInput = h("input", { id: "image", type: "text", placeholder: "Insert URL here!"})
     const imageLabel = h("label", { for: "image" }, "Image:");
 
-    const submitButton = h("button", {}, "Submit Post");
+    const submitButton = h("button", {}, "Houston, we have a new post! 🚀");
     return h("form", { onsubmit: function(){
     //get email and password from the input    
     }},
