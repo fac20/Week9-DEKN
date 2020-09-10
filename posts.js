@@ -14,7 +14,11 @@ function displayPosts() {
 
 			const h2 = h('h2', {}, location);
 			// img
-			const img = h('img', { src: imageURL, alt: ' travelPost Image ' });
+			const img = h('img', {
+				src: imageURL,
+				alt: ' travelPost Image ',
+				className: 'articleimg',
+			});
 			// p
 			const p = h('p', {}, message);
 			// h3
