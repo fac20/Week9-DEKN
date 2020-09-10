@@ -10,6 +10,10 @@
     --background-color: hsl(55, 100%, 97%);
 }
 
+/* html {
+    font-family: 'Rubik Mono One', sans-serif;
+} */
+
 * {
     box-sizing: border-box;
     font-family: var(--font-family);
@@ -196,7 +200,7 @@ button:active {
 #posts {
     margin-top: 5rem;
     border-radius: 20px;
-    background: #9a4646;
+    background: #1e3142;
     /* background: #f6ebeb; */
     width: 100vw;
     display: flex;
@@ -205,8 +209,9 @@ button:active {
     flex-wrap: wrap;
 }
 
+/* article{} */
+
 article {
-    /* border: 5px solid black; */
     border-radius: 20px;
     width: 20rem;
     height: 27rem;
@@ -217,12 +222,24 @@ article {
     margin: 5rem;
     overflow: scroll;
     background: hsl(55, 100%, 97%);
+    opacity: 1;
+}
+
+article::hover {
+    /* border: 5px solid black; */
+    opacity: 0;
+
 }
 
 article>img {
     max-width: 18rem;
+    /* width: 100%; */
 }
 
+/* article>img::hover {
+ max-width: 18rem; 
+display: none;
+} */
 .articleimg {
     margin-top: 2rem;
     /* border: 1px solid #4e7dac; */
