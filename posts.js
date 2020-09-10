@@ -30,9 +30,6 @@ function displayPosts() {
 		return postsContainer.append(...allPosts);
 	});
 }
-//do you wanna render this before we go to lunch ?
-//yeah!
-//cool im down
-// its a promise so we need to wait until its finished giving us all the info
 displayPosts();
+
 export default postsContainer;
