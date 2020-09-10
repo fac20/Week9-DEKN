@@ -6,7 +6,8 @@ const postsContainer = document.querySelector('#posts');
 console.log(postsContainer);
 function displayPosts() {
 	getPosts().then((result) => {
-		const allPosts = result.map((travelPost) => {
+		const reverse = result.reverse();
+		const allPosts = reverse.map((travelPost) => {
 			const location = travelPost.location;
 			const message = travelPost.message;
 			const imageURL = travelPost.image;
@@ -30,6 +31,8 @@ function displayPosts() {
 		return postsContainer.append(...allPosts);
 	});
 }
-displayPosts();
 
-export default postsContainer;
+displayPosts();
+// const displayAllPosts = displayPosts();
+
+export { displayPosts };

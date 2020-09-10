@@ -1,9 +1,12 @@
 import h from './create-element.js';
-import { login } from './api.js';
-import postsContainer from './posts.js';
+import { login, createPost, signup } from './api.js';
+import { displayPosts } from './posts.js';
 
 const formDiv = document.querySelector('#form');
 const header = document.querySelector('header');
+const postsDiv = document.querySelector('#posts');
+
+// 1. Navigation Bar
 
 const navbar = () => {
 	const buttonSignup = h(
@@ -29,6 +32,8 @@ const navbar = () => {
 const navbarEl = navbar();
 header.append(navbarEl);
 
+// 2. Append respective forms to div on click event listener
+
 function showForm(event) {
 	formDiv.innerHTML = '';
 	if (event.target.id === 'signupBtn') {
@@ -38,8 +43,8 @@ function showForm(event) {
 	}
 }
 
-const posts = postsContainer;
-// Signup
+// 3. Signup Form
+
 const signUp = () => {
 	const userInput = h('input', {
 		id: 'username',
@@ -53,7 +58,6 @@ const signUp = () => {
 	const passwordInput = h('input', {
 		id: 'password',
 		type: 'password',
-		pattern: '.*d.*',
 		minlength: '8',
 		'aria-describedby': 'passwordRequirements passwordError',
 		placeholder: 'Enter password here..',
@@ -77,11 +81,11 @@ const signUp = () => {
 				event.preventDefault();
 				const username = event.target.elements.username.value;
 				const password = event.target.elements.password.value;
-				login(username, password)
+				signup(username, password)
 					.then((user) => {
 						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
-						signUpForm.replaceWith(travelPost);
+						signUpForm.replaceWith(travelPostForm);
 					})
 					.catch(console.error);
 			},
@@ -99,10 +103,10 @@ const signUp = () => {
 
 const signUpForm = signUp();
 // formDiv.append(signUpForm)
+// if statement for token ??
 
-// if statement for token
+// 4. Login Form
 
-// Login
 const logIn = () => {
 	const userInput = h('input', {
 		id: 'username',
@@ -143,7 +147,7 @@ const logIn = () => {
 					.then((user) => {
 						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
-						logIn.replaceWith(travelPost);
+						loginForm.replaceWith(travelPostForm);
 					})
 					.catch(console.error);
 			},
@@ -162,7 +166,8 @@ const logIn = () => {
 const loginForm = logIn();
 // formDiv.append(loginForm);
 
-// Post
+// 5. Create Travel Post Form
+
 const travelPost = () => {
 	const locationInput = h('input', {
 		id: 'location',
@@ -187,14 +192,37 @@ const travelPost = () => {
 
 	const submitButton = h(
 		'button',
-		{ id: 'travelButton' },
+		{
+			id: 'travelButton',
+			onclick: function () {
+				window.scrollTo('0,500');
+			},
+		},
 		'Houston, we have a new post! 🚀'
 	);
 	return h(
 		'form',
 		{
 			onsubmit: function () {
-				//get email and password from the input
+				// if token exists - carry on these lines of code
+				// else give error 'not logged in'
+				event.preventDefault();
+				const location = event.target.elements.location.value;
+				const message = event.target.elements.message.value;
+				const imageURL = event.target.elements.image.value;
+				const token = window.localStorage.getItem('access_token');
+				if (token) {
+					createPost(location, message, imageURL, token)
+						.then((user) => {
+							console.log('hello bitches' + user, imageURL, token);
+							postsDiv.innerHTML = '';
+							displayPosts();
+						})
+						.then((posts) => {
+							postsDiv.append(posts);
+						})
+						.catch(console.error);
+				}
 			},
 		},
 		locationLabel,
