@@ -1,5 +1,5 @@
 import h from './create-element.js';
-import getPosts from './api.js';
+import { getPosts } from './api.js';
 
 const postsContainer = document.querySelector('#posts');
 
