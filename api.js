@@ -23,8 +23,8 @@ function getPosts() {
 function login(username, password) {
     return request("https://travel--jar.herokuapp.com/login", {
         method: "POST",
-        body: ({ username, password }), //usename?=myhoadfh
-        headers: { "content-type": "application/x-www-form-urlencoded" },
+        body: JSON.stringify({ username, password }), //usename?=myhoadfh
+        headers: { "content-type": "application/json" },
     })
 }
 
