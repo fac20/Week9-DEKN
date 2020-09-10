@@ -18,13 +18,13 @@ function request(url, options) {
 // }
 
 function getPosts() {
-    return request("http://travel--jar.herokuapp.com/");
+    return request("https://travel--jar.herokuapp.com/");
 }
 
-function login(email, password) {
-    return request("http://travel--jar.herokuapp.com/login", {
+function login(username, password) {
+    return request("https://travel--jar.herokuapp.com/login", {
         method: "POST",
-        body: ({ email, password }),
+        body: ({ username, password }), //usename?=myhoadfh
         headers: { "content-type": "application/x-www-form-urlencoded" },
     })
 }
@@ -32,4 +32,4 @@ function login(email, password) {
 // all fetch requests here
 // signup, login func - app.js, login - api 
 
-export { getPosts, login, getUser };
+export { getPosts, login };

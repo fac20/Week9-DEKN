@@ -2,12 +2,37 @@ import h from "./create-element.js";
 import { login, getPosts } from "./api.js";
 
 const formDiv = document.querySelector("#form")
+const header = document.querySelector("header")
+
+const navbar = () => {
+    const buttonSignup = h("button", {
+        id: "signupBtn", onclick: showForm
+    }, "Sign up");
+    const buttonLogin = h("button", {
+        id: "loginBtn", onclick: showForm
+    }, "Log in");
+    const buttonLogout = h("button", { id: "logoutBtn" }, "Log out");
+    return h("nav", {}, buttonSignup, buttonLogin, buttonLogout);
+}
+
+const navbarEl = navbar();
+header.append(navbarEl);
+
+function showForm(event) {
+    formDiv.innerHTML = "";
+    if (event.target.id === "signupBtn") {
+        formDiv.append(signUpForm)
+    } else if (event.target.id === "loginBtn") {
+        formDiv.append(loginForm)
+    }
+}
+
 
 // Signup
 const signUp = () => {
-    const userInput = h("input", { id: "email", type: "email", placeholder: "Enter email here.." });
-    const userLabel = h("label", { for: "email" }, "Email*");
-    const userError = h("div", { id: "emailError", class: "error" });
+    const userInput = h("input", { id: "username", type: "name", name: "username", placeholder: "Enter your name here.." });
+    const userLabel = h("label", { for: "username" }, "Username*");
+    const userError = h("div", { id: "usernameError", class: "error" });
 
     const passwordInput = h("input", { id: "password", type: "password", pattern: ".*\d.*", minlength: "8", "aria-describedby": "passwordRequirements passwordError", placeholder: "Enter password here.." });
     const passwordError = h("div", { id: "passwordError", class: "error" });
@@ -27,16 +52,16 @@ const signUp = () => {
 }
 
 const signUpForm = signUp()
-formDiv.append(signUpForm)
+// formDiv.append(signUpForm)
 
 // if statement for token
 
 
 // Login
 const logIn = () => {
-    const userInput = h("input", { id: "email", type: "email", placeholder: "Enter email here.." });
-    const userLabel = h("label", { for: "email" }, "Email*");
-    const userError = h("div", { id: "emailError", class: "error" });
+    const userInput = h("input", { id: "username", type: "name", name: "username", placeholder: "Enter your name here.." });
+    const userLabel = h("label", { for: "username" }, "Username*");
+    const userError = h("div", { id: "usernameError", class: "error" });
 
     const passwordInput = h("input", { id: "password", type: "password", pattern: ".*\d.*", minlength: "8", "aria-describedby": "passwordRequirements passwordError", placeholder: "Enter password here.." });
     const passwordError = h("div", { id: "passwordError", class: "error" });
@@ -46,13 +71,14 @@ const logIn = () => {
 
     const submitButton = h("button", {}, "Login");
     return h("form", {
+        action: "/", method: "POST",
         onsubmit: function () {
             //get email and password from the input   
             event.preventDefault();
-            const email = event.target.elements.email.value;
+            const username = event.target.elements.username.value;
             const password = event.target.elements.password.value;
-            login(email, password).then((user) => {
-                console.log(user);
+            login(username, password).then((user) => {
+                console.log("user", user);
                 window.localStorage.setItem('access_token', user.access_token);
                 logIn.replaceWith(travelPost);
             })
@@ -64,7 +90,7 @@ const logIn = () => {
 }
 
 const loginForm = logIn();
-formDiv.append(loginForm);
+// formDiv.append(loginForm);
 
 
 // Post
@@ -89,5 +115,5 @@ const travelPost = () => {
 }
 
 const travelPostForm = travelPost()
-formDiv.append(travelPostForm)
+//formDiv.append(travelPostForm)
 
