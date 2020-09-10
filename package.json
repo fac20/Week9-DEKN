@@ -1,0 +1,23 @@
+{
+  "name": "Week9-DEKN",
+  "version": "1.0.0",
+  "description": "Fullstack App about travel stories.",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac20/Week9-DEKN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac20/Week9-DEKN/issues"
+  },
+  "homepage": "https://github.com/fac20/Week9-DEKN#readme",
+  "devDependencies": {
+    "eslint": "^7.8.1"
+  }
+}
