@@ -10,12 +10,24 @@
 * {
     box-sizing: border-box;
     font-family: var(--font-family);
+    cursor: url(https://img.icons8.com/plasticine/40/000000/paper-plane.png), auto;
 }
 
 body {
     max-width: 30rem;
     margin: 0 auto;
     padding: 2rem;
+}
+
+header {
+    position: absolute;
+    right: 10vw;
+    top: 3vw;
+    width: 10px;
+}
+
+img {
+    width: 5vw;
 }
 
 h1 {
@@ -81,6 +93,7 @@ button {
     letter-spacing: 1px;
     background-color: var(--button-color);
     color: hsl(0, 0%, 0%);
+    cursor: pointer;
 }
 
 /* Grow Shadow -- https://ianlunn.github.io/Hover/#effects */
@@ -111,7 +124,6 @@ button:active {
     border: 3px solid var(--button-color);
     background: transparent;
     color: var(--theme-text-color);
-    /* hsl(281, 38%, 60%);*/
     font-weight: bold;
     font-size: 1rem;
 }
