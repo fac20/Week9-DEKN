@@ -1,14 +1,13 @@
 function request(url, options) {
-    return fetch(url, options).then(response => {
+    return fetch(url, options).then((response) => {
         if (!response.ok) {
-            const error = new Error("not okay");
+            const error = new Error('not okay');
             error.status = response.status;
             throw error;
-
         } else {
             return response.json();
         }
-    })
+    });
 }
 
 // function getUser(token) {

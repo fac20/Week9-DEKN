@@ -1,10 +1,13 @@
+/* ------ General ------ */
+
 :root {
     --button-color: hsl(31, 89%, 71%);
     /*  hsl(280, 48%, 83%); */
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --error-color: hsl(340, 70%, 50%);
-    --theme-text-color: hsl(31, 88%, 45%);
+    --theme-text-color: hsl(0, 38%, 59%);
+    --background-color: hsl(55, 100%, 97%);
 }
 
 * {
@@ -14,21 +17,13 @@
 }
 
 body {
-    max-width: 30rem;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color);
 }
 
-/* header {
-    position: absolute;
-    right: 10vw;
-    top: 3vw;
-    width: 10px;
-} */
-
-img {
-    width: 5vw;
-}
 
 h1 {
     word-spacing: 5px;
@@ -40,18 +35,43 @@ h1::first-letter {
     font-size: 1.4em;
     font-style: italic;
     font-weight: bold;
-    color: hsl(0 60% 50%);
+    color: hsl(210, 38%, 49%);
 }
+
+/* ------ Forms (Signup/Login/TravelPosts) ------ */
 
 form {
-    margin-top: 6rem;
+    margin-top: 3rem;
+    border: 4px solid #4e7dac;
+    border-radius: 20px;
+    width: 30rem;
 }
 
-label,
+label {
+    display: block;
+}
+
 input,
 form button,
-form {
+form,
+#email,
+#password,
+#location,
+#message,
+#image {
     display: block;
+    border: 4px solid #4e7dac;
+    border-radius: 20px;
+    background: transparent;
+    padding: 2rem;
+}
+
+#password::placeholder,
+#email::placeholder,
+#location::placeholder,
+#message::placeholder,
+#image::placeholder {
+    color: #4e7dac;
 }
 
 label {
@@ -77,9 +97,41 @@ textarea:focus {
     border-color: var(--button-color);
 }
 
-input[aria-invalid="true"] {
+input[aria-invalid='true'] {
     border-color: var(--error-color);
 }
+
+#passwordRequirements {
+    margin-top: 0.5rem;
+    line-height: 1.1;
+    color: hsl(280, 10%, 40%);
+}
+
+#passwordError {
+    margin-top: 0.5rem;
+    line-height: 1.1;
+    color: var(--error-color);
+}
+
+/* ------ Forms - Responsive Media Queries ------ */
+
+@media only screen and (max-width: 500px) {
+
+    form,
+    input,
+    label,
+    textarea {
+        border: 4px solid hsl(0, 0%, 0%);
+        border-radius: 20px;
+        max-width: 20rem;
+    }
+
+    .jar {
+        visibility: hidden;
+    }
+}
+
+/* ------ Buttons ------ */
 
 form button {
     display: block;
@@ -98,8 +150,6 @@ button {
     color: hsl(0, 0%, 0%);
     cursor: pointer;
 }
-
-/* Grow Shadow -- https://ianlunn.github.io/Hover/#effects */
 
 form button:hover {
     display: block;
@@ -136,15 +186,42 @@ form button:active {
     top: 2rem;
 }
 
-#passwordRequirements {
-    margin-top: 0.5rem;
-    line-height: 1.1;
-    color: hsl(280, 10%, 40%);
+/* ------ Below the pink - all posts section ------ */
+
+#posts {
+    margin-top: 5rem;
+    border-radius: 20px;
+    background: #9a4646;
+    /* background: #f6ebeb; */
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-#passwordError {
-    margin-top: 0.5rem;
-    line-height: 1.1;
-    color: var(--error-color);
+article {
+    /* border: 5px solid black; */
+    border-radius: 20px;
+    width: 20rem;
+    height: 27rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
+    overflow: scroll;
+    background: hsl(55, 100%, 97%);
 }
 
+article>img {
+    max-width: 18rem;
+}
+
+.articleimg {
+    margin-top: 2rem;
+    /* border: 1px solid #4e7dac; */
+    border-radius: 20px;
+    width: 20rem;
+    height: 90rem;
+}

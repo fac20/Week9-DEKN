@@ -1,5 +1,6 @@
 import h from "./create-element.js";
 import { login, getPosts } from "./api.js";
+import postsContainer from './api.js';
 
 const formDiv = document.querySelector("#form")
 const header = document.querySelector("header")
@@ -28,6 +29,8 @@ function showForm(event) {
 }
 
 
+const formDiv = document.querySelector('#form');
+const posts = postsContainer;
 // Signup
 const signUp = () => {
     const userInput = h("input", { id: "username", type: "name", name: "username", placeholder: "Enter your name here.." });
@@ -95,25 +98,48 @@ const loginForm = logIn();
 
 // Post
 const travelPost = () => {
-    const locationInput = h("input", { id: "location", type: "text", placeholder: "Location please!" });
-    const locationLabel = h("label", { for: "location" }, "Location:");
+    const locationInput = h('input', {
+        id: 'location',
+        type: 'text',
+        placeholder: 'Location please!',
+    });
+    const locationLabel = h('label', { for: 'location' }, 'Location:');
 
-    const messageInput = h("textarea", { id: "message", placeholder: "Message" });
-    const messageLabel = h("label", { for: "message" }, "Tell us about your experience! ✨")
+    const messageInput = h('textarea', { id: 'message', placeholder: 'Message' });
+    const messageLabel = h(
+        'label',
+        { for: 'message' },
+        'Tell us about your experience! ✨'
+    );
 
-    const imageInput = h("input", { id: "image", type: "text", placeholder: "Insert URL here!" })
-    const imageLabel = h("label", { for: "image" }, "Image:");
+    const imageInput = h('input', {
+        id: 'image',
+        type: 'text',
+        placeholder: 'Insert URL here!',
+    });
+    const imageLabel = h('label', { for: 'image' }, 'Image:');
 
-    const submitButton = h("button", { id: "travelButton" }, "Houston, we have a new post! 🚀");
-    return h("form", {
-        onsubmit: function () {
-            //get email and password from the input    
-        }
-    },
-        locationLabel, locationInput, messageLabel, messageInput, imageLabel, imageInput, submitButton
-    )
-}
+    const submitButton = h(
+        'button',
+        { id: 'travelButton' },
+        'Houston, we have a new post! 🚀'
+    );
+    return h(
+        'form',
+        {
+            onsubmit: function () {
+                //get email and password from the input
+            },
+        },
+        locationLabel,
+        locationInput,
+        messageLabel,
+        messageInput,
+        imageLabel,
+        imageInput,
+        submitButton
+    );
+};
 
-const travelPostForm = travelPost()
-//formDiv.append(travelPostForm)
-
+const travelPostForm = travelPost();
+formDiv.append(travelPostForm);
