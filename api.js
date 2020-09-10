@@ -11,8 +11,25 @@ function request(url, options) {
     })
 }
 
+// function getUser(token) {
+//     return request(“https://dogs-rest.herokuapp.com/v1/users/me/”, {
+//         headers: { authorization: `Bearer ${token}` },
+//     });
+// }
+
 function getPosts() {
     return request("http://travel--jar.herokuapp.com/");
 }
 
-export default getPosts;
+function login(email, password) {
+    return request("http://travel--jar.herokuapp.com/login", {
+        method: "POST",
+        body: ({ email, password }),
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+    })
+}
+
+// all fetch requests here
+// signup, login func - app.js, login - api 
+
+export { getPosts, login, getUser };
