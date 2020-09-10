@@ -28,14 +28,6 @@ body {
     background-color: var(--background-color);
 }
 
-/* ------ Title ------ */
-
-header {
-    position: absolute;
-    right: 10vw;
-    top: 3vw;
-    width: 10px;
-}
 
 h1 {
     word-spacing: 5px;
@@ -64,7 +56,7 @@ label {
 }
 
 input,
-button,
+form button,
 form,
 #email,
 #password,
@@ -145,8 +137,11 @@ input[aria-invalid='true'] {
 
 /* ------ Buttons ------ */
 
-button {
+form button {
     display: block;
+}
+
+button {
     margin: 4rem auto;
     border-radius: 2px;
     border: 0;
@@ -160,7 +155,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+form button:hover {
     display: block;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
@@ -171,9 +166,9 @@ button:hover {
     transition-property: box-shadow, transform;
 }
 
-button:hover,
-button:focus,
-button:active {
+form button:hover,
+form button:focus,
+form button:active {
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
