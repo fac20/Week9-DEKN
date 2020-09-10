@@ -72,7 +72,19 @@ const signUp = () => {
 	return h(
 		'form',
 		{
-			onsubmit: function () {},
+			onsubmit: function () {
+				//get email and password from the input
+				event.preventDefault();
+				const username = event.target.elements.username.value;
+				const password = event.target.elements.password.value;
+				login(username, password)
+					.then((user) => {
+						console.log('user', user);
+						window.localStorage.setItem('access_token', user.access_token);
+						signUpForm.replaceWith(travelPost);
+					})
+					.catch(console.error);
+			},
 		},
 		userLabel,
 		userInput,
@@ -104,7 +116,7 @@ const logIn = () => {
 	const passwordInput = h('input', {
 		id: 'password',
 		type: 'password',
-		pattern: '.*d.*',
+		// pattern: '.*d.*',
 		minlength: '8',
 		'aria-describedby': 'passwordRequirements passwordError',
 		placeholder: 'Enter password here..',
@@ -122,8 +134,6 @@ const logIn = () => {
 	return h(
 		'form',
 		{
-			action: '/',
-			method: 'POST',
 			onsubmit: function () {
 				//get email and password from the input
 				event.preventDefault();
