@@ -6,7 +6,8 @@ const postsContainer = document.querySelector('#posts');
 console.log(postsContainer);
 function displayPosts() {
 	getPosts().then((result) => {
-		const allPosts = result.map((travelPost) => {
+		const reverse = result.reverse();
+		const allPosts = reverse.map((travelPost) => {
 			const location = travelPost.location;
 			const message = travelPost.message;
 			const imageURL = travelPost.image;
@@ -30,9 +31,8 @@ function displayPosts() {
 		return postsContainer.append(...allPosts);
 	});
 }
-//do you wanna render this before we go to lunch ?
-//yeah!
-//cool im down
-// its a promise so we need to wait until its finished giving us all the info
+
 displayPosts();
-export default postsContainer;
+// const displayAllPosts = displayPosts();
+
+export { displayPosts };
