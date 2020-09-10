@@ -19,7 +19,7 @@ const signUp = () => {
     return h("form", { onsubmit: function(){
         //get email and password from the input    
     }},
-    userLabel, userInput, userError, passwordReq, passwordLabel, passwordInput, passwordError, submitButton
+    userLabel, userInput, userError, passwordLabel, passwordReq, passwordInput, passwordError, submitButton
     )        
 }
   
@@ -42,7 +42,7 @@ const login = () => {
     return h("form", { onsubmit: function(){
     //get email and password from the input    
     }},
-    userLabel, userInput, userError, passwordReq, passwordLabel, passwordInput, passwordError, submitButton
+    userLabel, userInput, userError, passwordLabel, passwordReq, passwordInput, passwordError, submitButton
     )        
 }
   
@@ -60,7 +60,7 @@ const travelPost = () => {
     const imageInput = h("input", { id: "image", type: "text", placeholder: "Insert URL here!"})
     const imageLabel = h("label", { for: "image" }, "Image:");
 
-    const submitButton = h("button", {}, "Houston, we have a new post! 🚀");
+    const submitButton = h("button", { id: "travelButton"}, "Houston, we have a new post! 🚀");
     return h("form", { onsubmit: function(){
     //get email and password from the input    
     }},
