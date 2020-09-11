@@ -9,6 +9,8 @@ const postsDiv = document.querySelector('#posts');
 // 1. Navigation Bar
 
 const navbar = () => {
+	let isTokenTrue = window.localStorage.access_token;
+
 	const buttonSignup = h(
 		'button',
 		{
@@ -25,12 +27,28 @@ const navbar = () => {
 		},
 		'Log in'
 	);
-	const buttonLogout = h('button', { id: 'logoutBtn' }, 'Log out');
-	return h('nav', {}, buttonSignup, buttonLogin, buttonLogout);
+	const buttonPost = h(
+		'button',
+		{
+			id: 'postBtn',
+			onclick: showForm,
+		},
+		'Post'
+	);
+	// const buttonLogout = h('button', { id: 'logoutBtn' }, 'Log out');
+
+
+	if (isTokenTrue) {
+		return h('nav', {}, buttonPost);
+
+	} else {
+
+		return h('nav', {}, buttonSignup, buttonLogin);
+	}
 };
 
 const navbarEl = navbar();
-header.append(navbarEl);
+
 
 // 2. Append respective forms to div on click event listener
 
@@ -40,6 +58,8 @@ function showForm(event) {
 		formDiv.append(signUpForm);
 	} else if (event.target.id === 'loginBtn') {
 		formDiv.append(loginForm);
+	} else if (event.target.id === 'postBtn') {
+		formDiv.append(travelPostForm)
 	}
 }
 
@@ -51,8 +71,9 @@ const signUp = () => {
 		type: 'name',
 		name: 'username',
 		placeholder: 'Enter your name here..',
+		required: true,
 	});
-	const userLabel = h('label', { for: 'username' }, 'Username*');
+	const userLabel = h('label', { htmlFor: 'username' }, 'Username*');
 	const userError = h('div', { id: 'usernameError', class: 'error' });
 
 	const passwordInput = h('input', {
@@ -61,10 +82,11 @@ const signUp = () => {
 		minlength: '8',
 		'aria-describedby': 'passwordRequirements passwordError',
 		placeholder: 'Enter password here..',
+		required: true,
 	});
 	const passwordError = h('div', { id: 'passwordError', class: 'error' });
 
-	const passwordLabel = h('label', { for: 'password' }, 'Password*');
+	const passwordLabel = h('label', { htmlFor: 'password' }, 'Password*');
 	const passwordReq = h(
 		'div',
 		{ id: 'passwordRequirements', class: 'requirements' },
@@ -83,6 +105,7 @@ const signUp = () => {
 				const password = event.target.elements.password.value;
 				signup(username, password)
 					.then((user) => {
+						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
 						signUpForm.replaceWith(travelPostForm);
 					})
@@ -112,8 +135,9 @@ const logIn = () => {
 		type: 'name',
 		name: 'username',
 		placeholder: 'Enter your name here..',
+		required: true,
 	});
-	const userLabel = h('label', { for: 'username' }, 'Username*');
+	const userLabel = h('label', { htmlFor: 'username' }, 'Username*');
 	const userError = h('div', { id: 'usernameError', class: 'error' });
 
 	const passwordInput = h('input', {
@@ -123,10 +147,11 @@ const logIn = () => {
 		minlength: '8',
 		'aria-describedby': 'passwordRequirements passwordError',
 		placeholder: 'Enter password here..',
+		required: true,
 	});
 	const passwordError = h('div', { id: 'passwordError', class: 'error' });
 
-	const passwordLabel = h('label', { for: 'password' }, 'Password*');
+	const passwordLabel = h('label', { htmlFor: 'password' }, 'Password*');
 	const passwordReq = h(
 		'div',
 		{ id: 'passwordRequirements', class: 'requirements' },
@@ -172,13 +197,14 @@ const travelPost = () => {
 		id: 'location',
 		type: 'text',
 		placeholder: 'Location please!',
+		required: true,
 	});
-	const locationLabel = h('label', { for: 'location' }, 'Location:');
+	const locationLabel = h('label', { htmlFor: 'location' }, 'Location:');
 
-	const messageInput = h('textarea', { id: 'message', placeholder: 'Message' });
+	const messageInput = h('textarea', { id: 'message', placeholder: 'Message', required: true, });
 	const messageLabel = h(
 		'label',
-		{ for: 'message' },
+		{ htmlFor: 'message' },
 		'Tell us about your experience! ✨'
 	);
 
@@ -186,13 +212,17 @@ const travelPost = () => {
 		id: 'image',
 		type: 'text',
 		placeholder: 'Insert URL here!',
+		required: true,
 	});
-	const imageLabel = h('label', { for: 'image' }, 'Image:');
+	const imageLabel = h('label', { htmlFor: 'image' }, 'Image:');
 
 	const submitButton = h(
 		'button',
 		{
 			id: 'travelButton',
+			onclick: function () {
+				window.scrollTo('0,500');
+			},
 		},
 		'Houston, we have a new post! 🚀'
 	);
@@ -210,11 +240,13 @@ const travelPost = () => {
 				if (token) {
 					createPost(location, message, imageURL, token)
 						.then((user) => {
+							console.log('hello bitches' + user, imageURL, token);
 							postsDiv.innerHTML = '';
 							displayPosts();
 						})
 						.then((posts) => {
 							postsDiv.append(posts);
+							travelPostForm.reset();
 						})
 						.catch(console.error);
 				}
@@ -231,4 +263,18 @@ const travelPost = () => {
 };
 
 const travelPostForm = travelPost();
-formDiv.append(travelPostForm);
+// formDiv.append(travelPostForm);
+
+function loadSite() {
+	let accessToken = window.localStorage.access_token;
+
+	if (accessToken) {
+		header.append(navbarEl);
+		formDiv.append(travelPostForm)
+	} else {
+		header.append(navbarEl);
+	}
+	displayPosts();
+}
+
+loadSite();
