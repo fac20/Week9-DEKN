@@ -68,12 +68,7 @@ form,
 	padding: 2rem;
 }
 
-#username::placeholder,
-#password::placeholder,
-#email::placeholder,
-#location::placeholder,
-#message::placeholder,
-#image::placeholder {
+::placeholder {
 	color: #4e7dac;
 }
 
@@ -119,6 +114,7 @@ input[aria-invalid='true'] {
 /* ------ Forms - Responsive Media Queries ------ */
 
 @media only screen and (max-width: 500px) {
+
 	form,
 	input,
 	label,
@@ -139,11 +135,13 @@ input[aria-invalid='true'] {
 		display: flex;
 		flex-direction: column;
 	}
+
 	#signupBtn,
 	#loginBtn,
 	#logoutBtn {
 		margin: 0 auto;
 	}
+
 	h1 {
 		visibility: hidden;
 	}
@@ -186,7 +184,9 @@ button:hover,
 	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 	transform: translate3d(0, 0, 0);
 }
+
 @keyframes shake {
+
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);
@@ -217,7 +217,9 @@ form button:active {
 	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 	transform: translate3d(0, 0, 0);
 }
+
 @keyframes shake {
+
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);
@@ -246,7 +248,7 @@ form button:active {
 	width: 250px;
 	border: 3px solid var(--button-color);
 	background: transparent;
-	color: var(--theme-text-color);
+	color: var(--theme-blue-color);
 	font-weight: bold;
 	font-size: 1rem;
 	box-shadow: 0 3px 6px hsl(31, 84%, 67%);
@@ -308,7 +310,7 @@ article:hover {
 	transform: rotateY(180deg);
 }
 
-article > h2:hover {
+article>h2:hover {
 	position: absolute;
 	padding: 16px;
 	width: 100%;
@@ -320,14 +322,14 @@ article:hover {
 	opacity: 0.8;
 }
 
-article > h2 {
+article>h2 {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	text-align: center;
 	font-style: bold;
 }
 
-article > p {
+article>p {
 	font-weight: bold;
 	text-align: center;
 }
