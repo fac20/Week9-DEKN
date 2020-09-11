@@ -39,6 +39,5 @@ function displayPosts() {
 	});
 }
 
-displayPosts();
-
 export { displayPosts };
+
