@@ -267,7 +267,6 @@ const travelPostForm = travelPost();
 
 function loadSite() {
 	let accessToken = window.localStorage.access_token;
-	console.log(accessToken)
 
 	if (accessToken) {
 		header.append(navbarEl);
