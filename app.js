@@ -35,20 +35,16 @@ const navbar = () => {
 		},
 		'Post'
 	);
-	// const buttonLogout = h('button', { id: 'logoutBtn' }, 'Log out');
-
+	const buttonLogout = h('button', { id: 'logoutBtn' }, 'Log out');
 
 	if (isTokenTrue) {
-		return h('nav', {}, buttonPost);
-
+		return h('nav', {}, buttonPost, buttonLogout);
 	} else {
-
 		return h('nav', {}, buttonSignup, buttonLogin);
 	}
 };
 
 const navbarEl = navbar();
-
 
 // 2. Append respective forms to div on click event listener
 
@@ -59,7 +55,7 @@ function showForm(event) {
 	} else if (event.target.id === 'loginBtn') {
 		formDiv.append(loginForm);
 	} else if (event.target.id === 'postBtn') {
-		formDiv.append(travelPostForm)
+		formDiv.append(travelPostForm);
 	}
 }
 
@@ -105,9 +101,9 @@ const signUp = () => {
 				const password = event.target.elements.password.value;
 				signup(username, password)
 					.then((user) => {
-						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
 						signUpForm.replaceWith(travelPostForm);
+						header.replaceWith(travelPostForm);
 					})
 					.catch(console.error);
 			},
@@ -172,6 +168,7 @@ const logIn = () => {
 						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
 						loginForm.replaceWith(travelPostForm);
+						header.replaceWith(navbar());
 					})
 					.catch(console.error);
 			},
@@ -201,7 +198,11 @@ const travelPost = () => {
 	});
 	const locationLabel = h('label', { htmlFor: 'location' }, 'Location:');
 
-	const messageInput = h('textarea', { id: 'message', placeholder: 'Message', required: true, });
+	const messageInput = h('textarea', {
+		id: 'message',
+		placeholder: 'Message',
+		required: true,
+	});
 	const messageLabel = h(
 		'label',
 		{ htmlFor: 'message' },
@@ -270,7 +271,7 @@ function loadSite() {
 
 	if (accessToken) {
 		header.append(navbarEl);
-		formDiv.append(travelPostForm)
+		formDiv.append(travelPostForm);
 	} else {
 		header.append(navbarEl);
 	}

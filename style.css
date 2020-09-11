@@ -114,7 +114,6 @@ input[aria-invalid='true'] {
 /* ------ Forms - Responsive Media Queries ------ */
 
 @media only screen and (max-width: 500px) {
-
 	form,
 	input,
 	label,
@@ -138,7 +137,8 @@ input[aria-invalid='true'] {
 
 	#signupBtn,
 	#loginBtn,
-	#logoutBtn {
+	#logoutBtn,
+	#postBtn {
 		margin: 0 auto;
 	}
 
@@ -151,7 +151,8 @@ input[aria-invalid='true'] {
 
 #signupBtn,
 #loginBtn,
-#logoutBtn {
+#logoutBtn,
+#postBtn {
 	margin-right: 2rem;
 	margin-left: 2rem;
 	border: 2px solid var(--theme-blue-color);
@@ -186,7 +187,6 @@ button:hover,
 }
 
 @keyframes shake {
-
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);
@@ -219,7 +219,6 @@ form button:active {
 }
 
 @keyframes shake {
-
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);
@@ -310,7 +309,7 @@ article:hover {
 	transform: rotateY(180deg);
 }
 
-article>h2:hover {
+article > h2:hover {
 	position: absolute;
 	padding: 16px;
 	width: 100%;
@@ -322,14 +321,14 @@ article:hover {
 	opacity: 0.8;
 }
 
-article>h2 {
+article > h2 {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	text-align: center;
 	font-style: bold;
 }
 
-article>p {
+article > p {
 	font-weight: bold;
 	text-align: center;
 }
