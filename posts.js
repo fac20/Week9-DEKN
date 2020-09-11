@@ -25,7 +25,7 @@ function displayPosts() {
 			// h3
 			const h3 = h('h3', {}, postNumber);
 			// article
-			return h('article', {}, h2, img, p, h3);
+			return h('article', { id: 'card' }, h2, img, p, h3);
 		});
 		console.log(allPosts);
 		return postsContainer.append(...allPosts);
