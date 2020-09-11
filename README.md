@@ -49,3 +49,12 @@
 [] Buttons to delete existing resources (for logged in users)
 <br>
 [] Form for updating existing resources (for logged in users)
+
+# Desktop View 
+![image](https://user-images.githubusercontent.com/60614102/92870650-fc181900-f3fb-11ea-8422-6d2ca4a210e3.png)
+![image](https://user-images.githubusercontent.com/60614102/92870740-16ea8d80-f3fc-11ea-9791-4d61c8c6dded.png)
+
+# Mobile View 
+![image](https://user-images.githubusercontent.com/60614102/92871009-60d37380-f3fc-11ea-9984-9787c8f6a31e.png)
+
+
