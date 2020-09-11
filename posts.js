@@ -3,7 +3,6 @@ import { getPosts } from './api.js';
 
 const postsContainer = document.querySelector('#posts');
 
-console.log(postsContainer);
 function displayPosts() {
 	getPosts().then((result) => {
 		const reverse = result.reverse();
@@ -27,7 +26,6 @@ function displayPosts() {
 			// article
 			return h('article', { id: 'card' }, h2, img, p, h3);
 		});
-		console.log(allPosts);
 		return postsContainer.append(...allPosts);
 	});
 }

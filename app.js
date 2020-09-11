@@ -83,7 +83,6 @@ const signUp = () => {
 				const password = event.target.elements.password.value;
 				signup(username, password)
 					.then((user) => {
-						console.log('user', user);
 						window.localStorage.setItem('access_token', user.access_token);
 						signUpForm.replaceWith(travelPostForm);
 					})
@@ -194,9 +193,6 @@ const travelPost = () => {
 		'button',
 		{
 			id: 'travelButton',
-			onclick: function () {
-				window.scrollTo('0,500');
-			},
 		},
 		'Houston, we have a new post! 🚀'
 	);
@@ -214,7 +210,6 @@ const travelPost = () => {
 				if (token) {
 					createPost(location, message, imageURL, token)
 						.then((user) => {
-							console.log('hello bitches' + user, imageURL, token);
 							postsDiv.innerHTML = '';
 							displayPosts();
 						})
