@@ -248,7 +248,7 @@ form button:active {
 	width: 250px;
 	border: 3px solid var(--button-color);
 	background: transparent;
-	color: var(--theme-blue-color);
+	color: hsl(210, 57%, 33%);
 	font-weight: bold;
 	font-size: 1rem;
 	box-shadow: 0 3px 6px hsl(31, 84%, 67%);
