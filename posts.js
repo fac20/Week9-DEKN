@@ -24,13 +24,21 @@ function displayPosts() {
 			// h3
 			const h3 = h('h3', {}, postNumber);
 			// article
-			return h('article', { id: 'card' }, h2, img, p, h3);
+			return h(
+				'article',
+				{
+					id: 'card',
+				},
+				h2,
+				img,
+				p,
+				h3
+			);
 		});
 		return postsContainer.append(...allPosts);
 	});
 }
 
 displayPosts();
-// const displayAllPosts = displayPosts();
 
 export { displayPosts };
